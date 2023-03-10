@@ -8,11 +8,15 @@ import { ListPokemon } from '../model/listPokemon';
 })
 export class ListPokemonService {
 
-  private readonly url:string='https://pokeapi.co/api/v2/pokemon/?limit=20&offset=0';
+  private readonly url:string='https://pokeapi.co/api/v2/pokemon/';
 
   constructor(private httpClient: HttpClient,) { }
 
   public getListPokemon():Observable<ListPokemon>{
-    return this.httpClient.get<ListPokemon>(this.url)
+    return this.httpClient.get<ListPokemon>(this.url+"?limit=20&offset=0")
+  }
+
+  public getListPokemonOffset(offset:number):Observable<ListPokemon>{
+    return this.httpClient.get<ListPokemon>(this.url+"?limit=20&offset="+offset)
   }
 }

@@ -10,7 +10,6 @@ import { ListPokemonService } from 'src/app/core/services/list-pokemon.service';
 export class ListPokemonComponent implements OnInit{
   
   models!:ListPokemon
-  nbPages!: number[]
 
   constructor (private listPokemonService:ListPokemonService,){}
 
@@ -24,10 +23,14 @@ export class ListPokemonComponent implements OnInit{
     this.listPokemonService.getListPokemon().subscribe(
       data => {
        this.models=data;
-       this.nbPages=Array(Math.ceil(this.models.count/20)).fill(0).map((_, index) => index);;
+      }
+    )
+  }
 
-       console.log(this.nbPages)
-       //trouve comment le replir avec le bon index
+  private listPokemonOffet(offset:number) {
+    this.listPokemonService.getListPokemonOffset(offset).subscribe(
+      data => {
+       this.models=data;
       }
     )
   }
