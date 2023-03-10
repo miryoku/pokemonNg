@@ -10,7 +10,7 @@ import { ListPokemonService } from 'src/app/core/services/list-pokemon.service';
 export class ListPokemonComponent implements OnInit{
   
   models!:ListPokemon
-
+  isLoading: boolean = false;
   constructor (private listPokemonService:ListPokemonService,){}
 
   ngOnInit(): void {
@@ -20,17 +20,21 @@ export class ListPokemonComponent implements OnInit{
 
 
   private loadListPokemon() {
+    this.isLoading=true;
     this.listPokemonService.getListPokemon().subscribe(
       data => {
        this.models=data;
+       this.isLoading=false;
       }
     )
   }
 
-  private listPokemonOffet(offset:number) {
+  public listPokemonOffet(offset:string) {
+    this.isLoading=true;
     this.listPokemonService.getListPokemonOffset(offset).subscribe(
       data => {
-       this.models=data;
+        this.models=data;
+        this.isLoading=false;
       }
     )
   }

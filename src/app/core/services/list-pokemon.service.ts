@@ -16,7 +16,7 @@ export class ListPokemonService {
     return this.httpClient.get<ListPokemon>(this.url+"?limit=20&offset=0")
   }
 
-  public getListPokemonOffset(offset:number):Observable<ListPokemon>{
-    return this.httpClient.get<ListPokemon>(this.url+"?limit=20&offset="+offset)
+  public getListPokemonOffset(offset:string):Observable<ListPokemon>{
+    return this.httpClient.get<ListPokemon>(offset)
   }
 }

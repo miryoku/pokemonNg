@@ -1,26 +1,38 @@
-<nav aria-label="Page navigation example">
-  <ul class="pagination justify-content-center">
-    <li class="page-item disabled">
-      <a class="page-link" href="#" tabindex="-1" aria-disabled="true">Previous</a>
-    </li>
-    
-    <li class="page-item">
-      <a class="page-link" href="#">Next</a>
-    </li>
-  </ul>
-</nav>
-
-
-<div class="container-fluid">
-    <div class="row">
-        <div class="col-6 col-sm-3" *ngFor="let model of models.results">
-            <div class="card">
-                <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/{{model.url.split('/')[6]}}.png" class="card-img-top" alt="...">
-                <div class="card-body">
-                  <p class="card-text">{{model.name}}</p>
-                </div>
-              </div>  
-        </div>
+<div *ngIf="isLoading">
+  <div class="text-center">
+    <div class="spinner-border m-5"   style="width: 10rem; height: 10rem;" role="status">
+      <span class="visually-hidden">Loading...</span>
     </div>
+  </div>
+</div>
+
+
+<div *ngIf="!isLoading">
+  <nav aria-label="Page navigation example">
+    <ul class="pagination justify-content-center">
+      <li class="page-item {{models.previous==null?'disabled':''}}">
+        <button class="page-link" (click)="listPokemonOffet(models.previous)">Previous</button>
+      </li>
+      
+      <li class="page-item {{models.next==null?'disabled':''}}">
+        <button class="page-link" (click)="listPokemonOffet(models.next)">Next</button>
+      </li>
+    </ul>
+  </nav>
+
+
+  <div class="container-fluid">
+      <div class="row">
+          <div class="col-6 col-sm-3" *ngFor="let model of models.results">
+              <div class="card">
+                  <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/{{model.url.split('/')[6]}}.png" class="card-img-top" alt="...">
+                  <div class="card-body">
+                    <p class="card-text">{{model.name}}</p>
+                  </div>
+                </div>  
+          </div>
+      </div>
+  </div>
+
 </div>
 
