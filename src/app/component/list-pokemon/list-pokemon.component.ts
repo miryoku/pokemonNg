@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ListPokemon } from 'src/app/core/model/listPokemon';
 import { ListPokemonService } from 'src/app/core/services/list-pokemon.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-list-pokemon',
@@ -11,8 +12,7 @@ export class ListPokemonComponent implements OnInit{
   
   models!:ListPokemon
   isLoading: boolean = false;
-  constructor (private listPokemonService:ListPokemonService,){}
-
+  constructor (private listPokemonService:ListPokemonService,public router: Router,){}
   ngOnInit(): void {
     this.loadListPokemon();
 
@@ -39,4 +39,7 @@ export class ListPokemonComponent implements OnInit{
     )
   }
 
+  public detailPokemon(id:string){
+    this.router.navigateByUrl("/PokemonDetail/"+id)
+  }
 }
