@@ -3,3 +3,34 @@
 <div *ngFor="let model of models.types">
     {{model.type.name}}
 </div>
+<div class="container-fluis">
+<div id="carouselExample" class="carousel carousel-dark slide col-6 col-sm-3">
+
+    <div class="carousel-inner" *ngIf="models.sprites.front_default">
+      <div class="carousel-item active">
+        <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/{{models.id}}.png"  alt="...">
+        <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/back/{{models.id}}.png"  alt="...">
+    </div>
+      <div class="carousel-item" *ngIf="models.sprites.front_female">
+        <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/female/{{models.id}}.png"  alt="...">
+        <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/back/female/{{models.id}}.png" alt="...">
+      </div>
+      <div class="carousel-item"  *ngIf="models.sprites.front_shiny">
+        <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/shiny/{{models.id}}.png"  alt="...">
+        <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/back/shiny/{{models.id}}.png"  alt="...">
+      </div>
+      <div class="carousel-item"  *ngIf="models.sprites.front_shiny_female">
+        <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/shiny/female/{{models.id}}.png"  alt="...">
+        <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/back/shiny/female/{{models.id}}.png"  alt="...">
+      </div>
+    </div>
+    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExample" data-bs-slide="prev">
+      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Previous</span>
+    </button>
+    <button class="carousel-control-next" type="button" data-bs-target="#carouselExample" data-bs-slide="next">
+      <span class="carousel-control-next-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Next</span>
+    </button>
+  </div>
+</div>
