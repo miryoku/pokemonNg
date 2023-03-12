@@ -6,6 +6,7 @@ import { AppComponent } from './app.component';
 import { HttpClientModule,  } from '@angular/common/http';
 import { ListPokemonComponent } from './component/list-pokemon/list-pokemon.component';
 import { PokemonDetailComponent } from './component/pokemon-detail/pokemon-detail.component';
+import { NgChartsModule } from 'ng2-charts';
 
 @NgModule({
   declarations: [
@@ -16,7 +17,8 @@ import { PokemonDetailComponent } from './component/pokemon-detail/pokemon-detai
   imports: [
     BrowserModule,
     AppRoutingModule,
-    HttpClientModule
+    HttpClientModule,
+    NgChartsModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
