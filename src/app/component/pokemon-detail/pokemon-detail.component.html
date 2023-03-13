@@ -1,11 +1,31 @@
-{{models.name}}
-
-<div *ngFor="let model of models.types">
-    {{model.type.name}}
-</div>
 <div class="container-fluid">
-<div id="carouselExample" class="carousel carousel-dark slide col-6 col-sm-3">
 
+  <div class="card">
+    <div class="card-header">
+      {{models.name}}
+      
+    </div>
+    <div class="card-body">
+      Types : 
+      <div class="btn-group" role="group" aria-label="Basic example">
+        <button type="button" class="{{type1}}">
+          {{models.types[0].type.name}}
+        </button >
+        <button type="button" class="{{type2}}">
+          {{models.types[1].type.name}}
+        </button >
+      </div>
+     
+    </div>
+  </div>
+</div>
+
+
+
+
+
+<div class="container-fluid">
+<div id="carouselExample" class="carousel carousel-dark slide col-6 col-sm-3 text-center">
     <div class="carousel-inner" *ngIf="models.sprites.front_default">
       <div class="carousel-item active ">
         <p class="text-center ">Sprites</p>
@@ -40,8 +60,10 @@
 </div>
 
 
-<canvas baseChart class="chart"
-        [data]="radarChartData"
-        [options]="radarChartOptions"
-        [type]="radarChartType">
-</canvas>
+<div class="col-6 col-sm-3">
+  <canvas baseChart class="chart"
+    [data]="radarChartData"
+    [options]="radarChartOptions"
+    [type]="radarChartType" >
+  </canvas>
+</div>
