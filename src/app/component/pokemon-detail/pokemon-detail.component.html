@@ -1,69 +1,71 @@
-<div class="container-fluid">
+<button  (click)="retour()">retour</button>
 
+<div class="container-fluid">
   <div class="card">
     <div class="card-header">
       {{models.name}}
       
     </div>
-    <div class="card-body">
-      Types : 
-      <div class="btn-group" role="group" aria-label="Basic example">
-        <button type="button" class="{{type1}}">
-          {{models.types[0].type.name}}
-        </button >
-        <button type="button" class="{{type2}}">
-          {{models.types[1].type.name}}
-        </button >
+    <div class="row">
+    <div class="col-sm-6">
+      <div class="card-body">
+        Types : 
+        <div class="btn-group" role="group" aria-label="Basic example">
+          <button type="button" *ngFor="let model of models.types" class="btn btn-light">
+            {{model.type.name}}
+          </button >
+        </div>
+        <p class="card-text">
+        Height : {{models.height}}
+        </p>
+        <p class="card-text">
+          Weight : {{models.weight}}
+        </p>
+
       </div>
-     
+    </div>
+  <div class="col-sm-6">
+      <div id="carouselExample" class="carousel carousel-dark slide text-center">
+          <div class="carousel-inner" *ngIf="models.sprites.front_default">
+            <div class="carousel-item active ">
+              <p class="text-center ">Sprites</p>
+              <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/{{models.id}}.png"  alt="...">
+              <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/back/{{models.id}}.png"  alt="...">
+          </div>
+            <div class="carousel-item" *ngIf="models.sprites.front_female">
+              <p class="text-center">sprites female</p>
+              <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/female/{{models.id}}.png"  alt="...">
+              <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/back/female/{{models.id}}.png" alt="...">
+            </div>
+            <div class="carousel-item"  *ngIf="models.sprites.front_shiny">
+              <p class="text-center">Sprites shiny</p>
+              <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/shiny/{{models.id}}.png"  alt="...">
+              <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/back/shiny/{{models.id}}.png"  alt="...">
+            </div>
+            <div class="carousel-item"  *ngIf="models.sprites.front_shiny_female">
+              <p class="text-center">Sprites female shiny</p>
+              <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/shiny/female/{{models.id}}.png"  alt="...">
+              <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/back/shiny/female/{{models.id}}.png"  alt="...">
+            </div>
+          </div>
+          <button class="carousel-control-prev" type="button" data-bs-target="#carouselExample" data-bs-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Previous</span>
+          </button>
+          <button class="carousel-control-next" type="button" data-bs-target="#carouselExample" data-bs-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Next</span>
+          </button>
+        </div>
+  </div>
+  <div class="col-sm-6">
+    <canvas baseChart class="chart"
+      [data]="radarChartData"
+      [options]="radarChartOptions"
+      [type]="radarChartType" >
+    </canvas>
+  </div>
+  
     </div>
   </div>
-</div>
-
-
-
-
-
-<div class="container-fluid">
-<div id="carouselExample" class="carousel carousel-dark slide col-6 col-sm-3 text-center">
-    <div class="carousel-inner" *ngIf="models.sprites.front_default">
-      <div class="carousel-item active ">
-        <p class="text-center ">Sprites</p>
-        <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/{{models.id}}.png"  alt="...">
-        <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/back/{{models.id}}.png"  alt="...">
-    </div>
-      <div class="carousel-item" *ngIf="models.sprites.front_female">
-        <p class="text-center">sprites female</p>
-        <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/female/{{models.id}}.png"  alt="...">
-        <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/back/female/{{models.id}}.png" alt="...">
-      </div>
-      <div class="carousel-item"  *ngIf="models.sprites.front_shiny">
-        <p class="text-center">Sprites shiny</p>
-        <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/shiny/{{models.id}}.png"  alt="...">
-        <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/back/shiny/{{models.id}}.png"  alt="...">
-      </div>
-      <div class="carousel-item"  *ngIf="models.sprites.front_shiny_female">
-        <p class="text-center">Sprites female shiny</p>
-        <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/shiny/female/{{models.id}}.png"  alt="...">
-        <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/back/shiny/female/{{models.id}}.png"  alt="...">
-      </div>
-    </div>
-    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExample" data-bs-slide="prev">
-      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-      <span class="visually-hidden">Previous</span>
-    </button>
-    <button class="carousel-control-next" type="button" data-bs-target="#carouselExample" data-bs-slide="next">
-      <span class="carousel-control-next-icon" aria-hidden="true"></span>
-      <span class="visually-hidden">Next</span>
-    </button>
-  </div>
-</div>
-
-
-<div class="col-6 col-sm-3">
-  <canvas baseChart class="chart"
-    [data]="radarChartData"
-    [options]="radarChartOptions"
-    [type]="radarChartType" >
-  </canvas>
 </div>

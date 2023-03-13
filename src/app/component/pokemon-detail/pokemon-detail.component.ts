@@ -3,7 +3,7 @@ import { ActivatedRoute } from '@angular/router';
 import { PokemonDetail } from 'src/app/core/model/pokemonDetail';
 import { PokemonDetailService } from 'src/app/core/services/pokemon-detail.service';
 import { ChartConfiguration, ChartData, ChartEvent, ChartType } from 'chart.js';
-
+import { Location } from '@angular/common';
 @Component({
   selector: 'app-pokemon-detail',
   templateUrl: './pokemon-detail.component.html',
@@ -15,8 +15,6 @@ export class PokemonDetailComponent implements OnInit {
   id: string = this.activeRoot.snapshot.params["id"]
   models!:PokemonDetail;
   isLoading:boolean=false;
-  type1!: string
-  type2!: string
 
   radarChartOptions: ChartConfiguration['options'] = {
     responsive: true,
@@ -28,7 +26,7 @@ export class PokemonDetailComponent implements OnInit {
 
 
 
-  constructor(private activeRoot: ActivatedRoute,private detailPokemon:PokemonDetailService)
+  constructor(private activeRoot: ActivatedRoute,private detailPokemon:PokemonDetailService,private location: Location)
   {
   }
 
@@ -59,66 +57,13 @@ export class PokemonDetailComponent implements OnInit {
             { data: this.radarChartStat, label: 'statistics' },
           ]
         };
-        this.type1=this.colorType(this.models.types[0].type.name)
-        this.type2=this.colorType(this.models.types[1].type.name)
-
-
-
-
-
       }
     )
   }
 
 
-  
-private colorType(type:string){
-  switch(type){
-    case "grass":
-      return "btn btn-success";
-    case "normal":
-      return "btn btn-light";   
-    case "fighting":
-      return "btn btn-danger";     
-    case "flying":
-      return "btn btn-primary";
-    case "poison":
-      return "btn btn-dark";
-    case "ground":
-      return "btn btn-warning";
-    case "rock":
-      return "btn btn-danger";
-    case "bug":
-      return "btn btn-success";
-    case "ghost":
-      return "btn btn-dark";
-    case "steel":
-      return "btn btn-secondary";
-     case "fire":
-      return "btn btn-danger";
-    case "water":
-      return "btn btn-primary";
-    case "electric":
-      return "btn btn-warning";
-    case "psychic":
-      return "btn btn-secondary";
-    case "ice":
-      return "btn btn-primary";
-    case "dragon":
-      return "btn btn-primary";
-    case "dark":
-      return "btn btn-dark";
-    case "fairy":
-      return "btn btn-info";
-    case "unknown":
-      return "btn btn-link";
-    case "dark":
-      return "btn btn-success";
+  public retour():void{
+    this.location.back();
+    
   }
-  return "";
-}
-   
-   
-
-
 }
